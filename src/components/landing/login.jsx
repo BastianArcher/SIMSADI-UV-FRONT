@@ -23,6 +23,7 @@ function Login() {
     )
 
     if (usuarioValido) {
+      sessionStorage.setItem("isAuthenticated", "true");
       navigate("/systems")
     } else {
       setError("Credenciales incorrectas")
