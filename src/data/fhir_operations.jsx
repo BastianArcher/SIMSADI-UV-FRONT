@@ -54,12 +54,6 @@ const operations = [
       Descripcion: "Busca pacientes similares en el sistema según sus datos."
     },
     {
-      Operacion: "$expand",
-      Metodo: "GET",
-      Ruta: "[base]/ValueSet/$expand",
-      Descripcion: "Expande un ValueSet mostrando todos sus códigos contenidos."
-    },
-    {
       Operacion: "$graph",
       Metodo: "GET",
       Ruta: "[base]/[resourceType]/[id]/$graph",

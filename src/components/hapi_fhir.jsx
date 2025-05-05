@@ -1,28 +1,27 @@
-import React, { useState } from 'react';
-import operations from '../data/fhir_operations';
+import React, { useState } from "react";
+import operations from "../data/fhir_operations";
 
 const hapi_fhir = () => {
   const [selectedOp, setSelectedOp] = useState(operations[0]);
-  const [resourceType, setResourceType] = useState('Patient');
-  const [resourceId, setResourceId] = useState('');
-  const [jsonInput, setJsonInput] = useState('');
-  const [params, setParams] = useState('');
-  const [response, setResponse] = useState('');
-  const [serverUrl, setServerUrl] = useState('http://167.71.174.241:8080/fhir');
+  const [resourceType, setResourceType] = useState("Patient");
+  const [resourceId, setResourceId] = useState("");
+  const [jsonInput, setJsonInput] = useState("");
+  const [params, setParams] = useState("");
+  const [response, setResponse] = useState("");
+  const [serverUrl, setServerUrl] = useState("http://167.71.174.241:8080/fhir");
 
-  const needsResourceType = selectedOp.Ruta.includes('[resourceType]');
-  const needsId = selectedOp.Ruta.includes('[id]');
-  const needsParams = selectedOp.Ruta.includes('param=value');
-  const needsBody = selectedOp.Metodo === 'POST' || selectedOp.Metodo === 'PUT';
+  const needsResourceType = selectedOp.Ruta.includes("[resourceType]");
+  const needsId = selectedOp.Ruta.includes("[id]");
+  const needsParams = selectedOp.Ruta.includes("param=value");
+  const needsBody = selectedOp.Metodo === "POST" || selectedOp.Metodo === "PUT";
 
   const buildUrl = () => {
-    let url = selectedOp.Ruta
-      .replace('[base]', serverUrl)
-      .replace('[resourceType]', resourceType)
-      .replace('[id]', resourceId);
+    let url = selectedOp.Ruta.replace("[base]", serverUrl)
+      .replace("[resourceType]", resourceType)
+      .replace("[id]", resourceId);
 
     if (needsParams && params) {
-      url = url.replace('param=value', params);
+      url = url.replace("param=value", params);
     }
 
     return url;
@@ -34,8 +33,8 @@ const hapi_fhir = () => {
     let options = {
       method: selectedOp.Metodo,
       headers: {
-        'Content-Type': 'application/fhir+json',
-        Accept: 'application/fhir+json',
+        "Content-Type": "application/fhir+json",
+        Accept: "application/fhir+json",
       },
     };
 
@@ -43,7 +42,7 @@ const hapi_fhir = () => {
       try {
         options.body = JSON.stringify(JSON.parse(jsonInput));
       } catch {
-        setResponse('JSON inválido');
+        setResponse("JSON inválido");
         return;
       }
     }
@@ -58,18 +57,21 @@ const hapi_fhir = () => {
   };
 
   return (
-    <div>
-      <h2>FHIR Client</h2>
+    <div className="max-w-3xl my-10 mx-auto p-6 bg-white border-2 border-primary-300 rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold text-gray-800 mb-6">FHIR Tool</h2>
 
-      <label>
+      <label className="block text-gray-700 font-medium mb-2">
         Operación:
         <select
           value={selectedOp.Operacion}
-          onChange={e =>
-            setSelectedOp(operations.find(op => op.Operacion === e.target.value))
+          onChange={(e) =>
+            setSelectedOp(
+              operations.find((op) => op.Operacion === e.target.value)
+            )
           }
+          className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-400 focus:border-primary-400"
         >
-          {operations.map(op => (
+          {operations.map((op) => (
             <option key={op.Operacion} value={op.Operacion}>
               {op.Operacion}
             </option>
@@ -77,53 +79,81 @@ const hapi_fhir = () => {
         </select>
       </label>
 
-      <p style={{ fontStyle: 'italic', color: '#555' }}>{selectedOp.Descripcion}</p>
+      <p className="italic text-gray-600 mb-6">{selectedOp.Descripcion}</p>
 
       {needsResourceType && (
-        <div>
-          <label>Tipo de recurso:
-            <input value={resourceType} onChange={e => setResourceType(e.target.value)} />
+        <div className="space-y-4 mb-6">
+          <label className="block text-gray-700 font-medium mb-2">
+            Tipo de recurso:
+            <input
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-400 focus:border-primary-400"
+              value={resourceType}
+              onChange={(e) => setResourceType(e.target.value)}
+            />
           </label>
         </div>
       )}
 
       {needsId && (
         <div>
-          <label>ID del recurso:
-            <input value={resourceId} onChange={e => setResourceId(e.target.value)} />
+          <label className="block text-gray-700 font-medium mb-2">
+            ID del recurso:
+            <input
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-400 focus:border-primary-400"
+              value={resourceId}
+              onChange={(e) => setResourceId(e.target.value)}
+            />
           </label>
         </div>
       )}
 
       {needsParams && (
         <div>
-          <label>Parámetros de búsqueda:
-            <input value={params} onChange={e => setParams(e.target.value)} placeholder="name=Juan&gender=male" />
+          <label>
+            Parámetros de búsqueda: 
+            <input
+              value={params}
+              onChange={(e) => setParams(e.target.value)}
+              placeholder="name=Juan&gender=male"
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-400 focus:border-primary-400"
+            />
           </label>
         </div>
       )}
 
       {needsBody && (
         <div>
-          <label>JSON del recurso:</label><br />
+          <label className="block text-gray-700 font-medium mb-2">
+            JSON del recurso:
+          </label>
           <textarea
             rows="10"
             cols="60"
             value={jsonInput}
-            onChange={e => setJsonInput(e.target.value)}
+            onChange={(e) => setJsonInput(e.target.value)}
+            className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-400 focus:border-primary-400"
           />
         </div>
       )}
 
-      <div style={{ fontStyle: 'italic', color: 'gray', marginTop: '1em' }}>
+      <div className="italic text-gray-500 mt-2 mb-6 p-3 bg-gray-50 rounded-md border border-gray-200">
         Comando a ejecutar: {selectedOp.Metodo} {buildUrl()}
       </div>
 
-      <br />
-      <button onClick={handleSend}>Enviar</button>
-
-      <h3>Respuesta del servidor:</h3>
-      <pre>{response}</pre>
+        <button
+          className="w-full sm:w-auto px-6 py-3 bg-primary-500 text-white font-medium rounded-md hover:bg-primary-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-600 transition-colors"
+          onClick={handleSend}
+        >
+          Enviar
+        </button>
+      <div className="mt-8">
+        <h3 className="text-xl font-semibold text-gray-800 mb-3">
+          Respuesta del servidor:
+        </h3>
+        <pre className="bg-gray-100 p-4 rounded-md border border-gray-300 overflow-x-auto min-h-[100px] font-mono text-sm">
+          {response || "Esperando respuesta..."}
+        </pre>
+      </div>
     </div>
   );
 };
