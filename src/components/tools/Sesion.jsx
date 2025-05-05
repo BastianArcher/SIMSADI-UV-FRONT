@@ -30,8 +30,8 @@ function Login() {
   }
 
   return (
-    <div className="flex justify-center bg-linear-to-br from-primary-200 to-primary-600 py-10">
-      <form className="grid grid-rows-5 grid-cols-2 gap-2 p-8 bg-gray-100 border-2 rounded-2xl border-primary-700 shadow-2xl" onSubmit={handleSubmit}>
+    <div className="flex justify-center bg-white py-10">
+      <form className="grid grid-rows-5 grid-cols-2 items-center gap-2 p-8 border-2 border-primary-300 rounded-lg shadow-md" onSubmit={handleSubmit}>
         <h1 className="col-span-2 text-center text-3xl font-bold text-primary-500 border-b-2">INGRESAR CREDENCIALES</h1>
         <p className="font-bold w-sm">Correo:</p>
         <input
@@ -41,7 +41,7 @@ function Login() {
           placeholder="ejemplo@ejemplo.ej"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-sm px-4 border"
+          className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-400 focus:border-primary-400"
           required
         />
         <p className="font-bold w-sm">Contraseña:</p>
@@ -52,10 +52,10 @@ function Login() {
           placeholder="Contraseña"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-sm px-4 border"
+          className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-400 focus:border-primary-400"
           required
         />
-        <button className="row-span-3 col-start-2 row-start-2 my-10 mx-20 bg-primary-500 border rounded-xl font-bold text-white shadow-md transition duration-100 hover:bg-primary-100 hover:text-primary-700 hover:border-primary-700 ease-in" type="submit">INICIAR SESIÓN</button>
+        <button className="row-span-5 col-start-2 row-start-2 my-10 mx-20 py-3 px-6 bg-primary-500 border rounded-full font-bold text-white shadow-md transition duration-100 hover:bg-primary-100 hover:text-primary-700 hover:border-primary-700 ease-in" type="submit">INICIAR SESIÓN</button>
         {error && <p>{error}</p>}
       </form>
     </div>

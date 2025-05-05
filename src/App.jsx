@@ -5,10 +5,12 @@ import HAPI_FHIR from "./components/FHIR.jsx";
 import Snowstorm from "./components/Terminology.jsx";
 import Bahmni from "./components/Bahmni.jsx";
 import RouteProtection from "./components/tools/RouteProtection.jsx";
+import ScrollToTop from "./components/tools/ScrollTop.jsx";
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
@@ -49,4 +51,3 @@ function App() {
 }
 
 export default App;
-
