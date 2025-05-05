@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./components/home.jsx";
-import Systems from "./components/systems.jsx";
-import HAPI_FHIR from "./components/hapi_fhir.jsx";
-import Snowstorm from "./components/snowstorm_terminology.jsx";
-import Bahmni from "./components/bahmni.jsx";
-import RouteProtection from "./components/RouteProtection.jsx";
+import Home from "./components/Home.jsx";
+import Systems from "./components/Menu.jsx";
+import HAPI_FHIR from "./components/FHIR.jsx";
+import Snowstorm from "./components/Terminology.jsx";
+import Bahmni from "./components/Bahmni.jsx";
+import RouteProtection from "./components/tools/RouteProtection.jsx";
 
 function App() {
   return (

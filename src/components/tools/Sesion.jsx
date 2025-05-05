@@ -8,7 +8,6 @@ function Login() {
   const [error, setError] = useState("")
   const [credentials, setCredentials] = useState([])
 
-  // Cargar credenciales desde credentials.json
   useEffect(() => {
     fetch("/credentials.json")
       .then(res => res.json())
