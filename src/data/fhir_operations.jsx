@@ -47,17 +47,5 @@ const operations = [
       Ruta: "[base]/Patient/[id]/$everything",
       Descripcion: "Recupera todos los recursos relacionados con un paciente o todo el sistema."
     },
-    {
-      Operacion: "$match",
-      Metodo: "POST",
-      Ruta: "[base]/Patient/$match",
-      Descripcion: "Busca pacientes similares en el sistema según sus datos."
-    },
-    {
-      Operacion: "$graph",
-      Metodo: "GET",
-      Ruta: "[base]/[resourceType]/[id]/$graph",
-      Descripcion: "Devuelve un conjunto de recursos relacionados según una definición de grafo."
-    }
   ];
   export default operations;
