@@ -86,7 +86,7 @@ const hapi_fhir = () => {
           <label className="block text-gray-700 font-medium mb-2">
             Tipo de recurso:
             <input
-              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-400 focus:border-primary-400"
+              className="mt-1 font-normal block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-400 focus:border-primary-400"
               value={resourceType}
               onChange={(e) => setResourceType(e.target.value)}
             />
@@ -99,7 +99,7 @@ const hapi_fhir = () => {
           <label className="block text-gray-700 font-medium mb-2">
             ID del recurso:
             <input
-              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-400 focus:border-primary-400"
+              className="mt-1 font-normal block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-400 focus:border-primary-400"
               value={resourceId}
               onChange={(e) => setResourceId(e.target.value)}
             />
@@ -109,13 +109,13 @@ const hapi_fhir = () => {
 
       {needsParams && (
         <div>
-          <label>
+          <label className="block text-gray-700 font-medium mb-2">
             Parámetros de búsqueda: 
             <input
               value={params}
               onChange={(e) => setParams(e.target.value)}
               placeholder="name=Juan&gender=male"
-              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-400 focus:border-primary-400"
+              className="mt-1 font-normal block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-400 focus:border-primary-400"
             />
           </label>
         </div>
@@ -131,12 +131,13 @@ const hapi_fhir = () => {
             cols="60"
             value={jsonInput}
             onChange={(e) => setJsonInput(e.target.value)}
-            className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-400 focus:border-primary-400"
+            className="mt-1 font-normal block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-400 focus:border-primary-400"
           />
         </div>
       )}
 
       <div className="italic text-gray-500 mt-2 mb-6 p-3 bg-gray-50 rounded-md border border-gray-200">
+        Operación: {selectedOp.Ruta} <br />
         Comando a ejecutar: {selectedOp.Metodo} {buildUrl()}
       </div>
 

@@ -8,7 +8,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/fhir': {
-        target: 'http://10.150.45.205',
+        target: 'http://100.122.45.2:80',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/fhir/, '/fhir'),
       },
